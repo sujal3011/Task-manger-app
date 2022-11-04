@@ -16,7 +16,7 @@ const Signup = () => {
         e.preventDefault();
 
 
-        const response = await fetch(`http://localhost/auth/createUser`, {
+        const response = await fetch(`${process.env.REACT_APP_SERVER_DOMAIN}/auth/createUser`, {
             method: 'POST',
 
             headers: {

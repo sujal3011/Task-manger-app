@@ -13,7 +13,7 @@ const Login = () => {
 
     const onSubmit= async (e)=>{
         e.preventDefault();
-        const response = await fetch(`http://localhost/auth/login`, {
+        const response = await fetch(`${process.env.REACT_APP_SERVER_DOMAIN}/auth/login`, {
             method: 'POST', 
 
             headers: {
