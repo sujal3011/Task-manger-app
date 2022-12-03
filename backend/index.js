@@ -1,14 +1,27 @@
+require('dotenv').config()
 const express=require("express");
 const connecttoMongo=require("./db");
 const cors = require('cors');
+const passport = require('passport');
+const cookieSession = require('cookie-session');
+require('./passport.setup')
+
 connecttoMongo();  //Connecting to mongo
 
-
 const app=express();
-const port=80;
+const port= process.env.PORT || 3000;
+
 app.use(cors())
 
 app.use(express.json());
+
+app.use(cookieSession({
+    maxAge : 24 * 60 * 60 * 1000,
+    keys : ['sandip@low']
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.get('/',(req,res)=>{
     res.send("Hello,Welcome to task manager");
