@@ -1,6 +1,7 @@
 import { React, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
+import GoogleSignIn from './GoogleSignIn';
 
 const Signup = () => {
 
@@ -62,6 +63,7 @@ const Signup = () => {
                         </div>
                         <button className=" border bg-teal-500 text-white px-3 py-2 font-extrabold my-4">SIGN UP</button>
                     </form>
+                    <GoogleSignIn className="h-12 my-2" />
                     <p className="my-3">Already have an account? <Link className="font-bold underline" to="/login">Login here</Link></p>
                 </div>
             </div>

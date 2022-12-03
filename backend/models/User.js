@@ -3,6 +3,14 @@
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
+    provider: {
+        type: String,
+        default: "native",
+    },
+    providerId: {
+        type: String,
+        default: null
+    },
     name: String,
     email: {
         type: String,

@@ -5,6 +5,7 @@ const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 const fetchUser=require('../middleware/fetchUser');
 const jwt = require('jsonwebtoken');   //using jwt(JSON web token for authorization)
+const passport = require('passport');
 
 const secret_key="Mynameissujal"  //secret key 
 
@@ -115,5 +116,22 @@ router.post('/getUser',fetchUser,async (req,res)=>{
   } catch (error) {
     res.status(500).send("Internal server error")
   }
+})
+
+// ROUTE-4-----> Google OAuth SignIn (no login required)
+router.get('/google', passport.authenticate('google', {
+  scope : ['profile', 'email']
+}))
+
+// ROUTE-5-----> Google OAuth Redirect URI (no need to visit...🙂)
+router.get('/google/redirect', passport.authenticate('google'), (req, res)=> {
+  // res.json(req.user)
+  const data={
+    user:{
+      id:req.user.id
+    }
+  }
+  const token = jwt.sign(data, secret_key)
+  res.redirect(process.env.CLIENT_URI+"/redirect?token="+token)
 })
 module.exports = router

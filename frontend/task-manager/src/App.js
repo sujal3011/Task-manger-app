@@ -9,6 +9,7 @@ import TaskState from './context/tasks/TaskState';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import UpdateTask from './components/UpdateTask';
+import Redirect from './components/Redirect';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/redirect" element={<Redirect />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/createList" element={<CreateList />} />

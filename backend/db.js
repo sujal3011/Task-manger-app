@@ -1,7 +1,7 @@
 // Connecting to moongose
 const mongoose=require("mongoose");
 
-const mongoURL="mongodb://localhost:27017/task-manager";
+const mongoURL=process.env.MONGODB_URI
 
 const connecttoMongo=()=>{
     mongoose.connect(mongoURL,()=>{
